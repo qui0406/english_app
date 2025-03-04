@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tlaq.englishappjavafx.PrimaryController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.199951171875" minWidth="10.0" prefWidth="142.39996337890625" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="686.4000244140625" minWidth="10.0" prefWidth="657.6000366210938" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Subject" text="ENGLISH MULTIPLE CHOICE APP " GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Text fx:id="txtContent" strokeType="OUTSIDE" strokeWidth="0.0" text="Nội dung câu hỏi" GridPane.rowIndex="1" />
+      <RadioButton fx:id="rdoA" mnemonicParsing="false" text="A" GridPane.rowIndex="2">
+         <toggleGroup>
+            <ToggleGroup fx:id="Choice" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rdoB" mnemonicParsing="false" text="B" toggleGroup="$Choice" GridPane.rowIndex="3" />
+      <RadioButton fx:id="rdoC" mnemonicParsing="false" text="C" toggleGroup="$Choice" GridPane.rowIndex="4" />
+      <RadioButton fx:id="rdoD" mnemonicParsing="false" text="D" toggleGroup="$Choice" GridPane.rowIndex="5" />
+      <Text fx:id="txtA" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Text fx:id="txtB" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Text fx:id="txtC" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Text fx:id="txtD" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <Button mnemonicParsing="false" onAction="#checkHandler" text="Check" />
+            <Button mnemonicParsing="false" onAction="#nextHandler" text="Next">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</GridPane>
