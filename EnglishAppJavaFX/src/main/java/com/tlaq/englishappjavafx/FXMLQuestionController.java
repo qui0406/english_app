@@ -5,20 +5,28 @@
 package com.tlaq.englishappjavafx;
 
 import com.tlaq.pojo.Category;
+import com.tlaq.pojo.Choice;
 import com.tlaq.pojo.Question;
 import com.tlaq.services.CategoryServices;
 import com.tlaq.services.QuestionServices;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -32,6 +40,23 @@ public class FXMLQuestionController implements Initializable {
     @FXML TableView<Question> tbQuestions;
     @FXML TextField txtSearch;
     
+    @FXML
+    RadioButton rdoA;
+    @FXML
+    RadioButton rdoB;
+
+    @FXML
+    RadioButton rdoC;
+    @FXML
+    RadioButton rdoD;
+    
+    @FXML TextField txtA;
+    @FXML TextField txtB;
+    @FXML TextField txtC;
+    @FXML TextField txtD;
+
+    @FXML TextArea txtContent;
+    @FXML Button btnAdd;
 
     /**
      * Initializes the controller class.
@@ -80,5 +105,26 @@ public class FXMLQuestionController implements Initializable {
         
         this.tbQuestions.setItems(FXCollections.observableList(s.getQuestions(0, kw)));
         
+    }
+    
+    public void addHandler(Event event) throws SQLException{
+        Question q = new Question(UUID.randomUUID().toString(), this.txtContent.getText(), 
+                this.cbBox.getSelectionModel().getSelectedItem().getId());
+        
+        Choice c1 = new Choice(UUID.randomUUID().toString(), txtA.getText(), rdoA.isSelected(), q.getId());
+        Choice c2 = new Choice(UUID.randomUUID().toString(), txtB.getText(), rdoB.isSelected(), q.getId());
+        Choice c3 = new Choice(UUID.randomUUID().toString(), txtC.getText(), rdoC.isSelected(), q.getId());
+        Choice c4 = new Choice(UUID.randomUUID().toString(), txtD.getText(), rdoD.isSelected(), q.getId());
+
+        List<Choice> choices = new ArrayList<>();
+        choices.add(c1);
+        choices.add(c2);
+        choices.add(c3);
+        choices.add(c4);
+        
+        QuestionServices s = new QuestionServices();
+        s.addQuestion(q, choices);
+        Utils.getAlert("Add success").show();
+        loadTableData("");
     }
 }

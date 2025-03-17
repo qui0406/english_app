@@ -56,4 +56,31 @@ public class QuestionServices {
         
         return choices;
     }
+    
+    public void addQuestion(Question q, List<Choice> choices) throws SQLException{
+        try (Connection conn = JdbcUtils.getConn()) {
+            conn.setAutoCommit(false);
+            String sql = "insert into question(id, content, category_id) values (?, ?, ?)";
+            PreparedStatement stm= conn.prepareCall(sql);
+            stm.setString(1, q.getId());
+            stm.setString(2, q.getContent());
+            stm.setInt(3, q.getCategoryId());
+            
+            int k = stm.executeUpdate();
+            
+            if(k>=0){
+                sql ="insert into choice(id, content, is_correct, question_id) values (?, ?, ?, ?)";
+                PreparedStatement stm2= conn.prepareCall(sql);
+                for (var c : choices){
+                    stm2.setString(1, c.getId());
+                    stm2.setString(2, c.getContent());
+                    stm2.setBoolean(3, c.isCorrect());
+                    stm2.setString(4, q.getId());
+                    
+                    stm2.executeUpdate();
+                }
+            }
+            conn.commit();
+        }
+    }
 }
