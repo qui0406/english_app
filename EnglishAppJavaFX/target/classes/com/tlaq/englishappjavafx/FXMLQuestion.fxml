@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="713.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tlaq.englishappjavafx.FXMLQuestionController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QUESTION MANAGER" />
+      <TextArea prefHeight="92.0" prefWidth="986.0" />
+      <ComboBox fx:id="cbBox" prefWidth="150.0" />
+      <HBox prefHeight="38.0" prefWidth="986.0">
+         <children>
+            <RadioButton mnemonicParsing="false" text="A" />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="143.0" prefHeight="41.0" prefWidth="986.0">
+         <children>
+            <RadioButton mnemonicParsing="false" text="B" />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="143.0" prefHeight="39.0" prefWidth="986.0">
+         <children>
+            <RadioButton mnemonicParsing="false" text="C" />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="143.0" prefHeight="35.0" prefWidth="986.0">
+         <children>
+            <RadioButton mnemonicParsing="false" text="D" />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox prefHeight="46.0" prefWidth="986.0">
+         <children>
+            <Button mnemonicParsing="false" text="Thêm câu hỏi" />
+         </children>
+      </HBox>
+      <TextField fx:id="txtSearch" />
+      <TableView fx:id="tbQuestions" onSort="#loadColumns" prefHeight="183.0" prefWidth="986.0" />
+   </children>
+</VBox>

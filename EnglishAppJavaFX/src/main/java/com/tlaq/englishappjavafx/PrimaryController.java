@@ -58,7 +58,7 @@ public class PrimaryController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         QuestionServices s = new QuestionServices();
         try {
-            this.questions =  s.getQuestions(3);
+            this.questions =  s.getQuestions(3, null);
             loadQuestionToUI();
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);

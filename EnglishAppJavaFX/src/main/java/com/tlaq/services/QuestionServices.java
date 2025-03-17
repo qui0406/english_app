@@ -19,11 +19,18 @@ import java.util.List;
  * @author QUI
  */
 public class QuestionServices {
-    public List<Question> getQuestions(int num) throws SQLException{
+    public List<Question> getQuestions(int num, String kw) throws SQLException{
         List<Question> questions= new ArrayList<>();
         try (Connection conn= JdbcUtils.getConn()){
-            PreparedStatement stm = conn.prepareCall("{call get_limit_questions(?)}");
-            stm.setInt(1, num);
+            PreparedStatement stm;
+            if (num==0){
+                stm= conn.prepareCall("select * from question where content like concat('%', ? , '%') order by id desc");
+                stm.setString(1, kw);
+                
+            }else {
+                stm= conn.prepareCall("select * from question order by rand() limit");
+                stm.setInt(1, num);
+            }
             
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
